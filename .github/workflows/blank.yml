@@ -1,0 +1,22 @@
+name: Get OIDC Token
+
+on:
+  push:
+    branches:
+      - testfr
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  get-oidc-token:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get OIDC token
+        id: oidc_token
+        uses: actions/oidc-token@v1
+
+      - name: Print OIDC token
+        run: echo "${{ steps.oidc_token.outputs.token }}"
